@@ -1,10 +1,10 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Rhino Yak Package Manager'
+description: 'Deploy packages straight from GitHub to the Yak package manager'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  build-path:  # id of input
+    description: 'The path to the build directory'
     required: true
-    default: '1000'
+    default: './dist'
 outputs:
   time: # output will be available to future steps
     description: 'The message to output'
