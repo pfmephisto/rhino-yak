@@ -1,9 +1,9 @@
 # Yak packet maneger action
 
-Publish a Rhino/Grasshopper plug-in using Yak streight from your GitHub action.
+Publish a Rhino/Grasshopper plug-in using Yak streight from a GitHub action.
 
-The action is curently set up as a simple composit action, but it resides in the template for a full javasrip action.
-The intent is to further develop the capabilities of the action over time.
+The action is curently set up as a simple composit action, but it resides in the template for a full javascript action.
+The intent is to further develop the capabilities of this action over time.
 
 ## Usage
 
