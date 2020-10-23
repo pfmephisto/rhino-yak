@@ -28,17 +28,22 @@ runs:
 #    - uses: dotnet/nbgv@master
 #      with:
 #        setAllVars: true
-    - name: Download Yak
-      run:
+#    - name: Download the package
+    - run:
+        cd ${{ github.action_path }}
         curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe
         .\yak.exe version
-    - name: Build Yak package
-      run:
+      shell: pwsh
+#    - name: Build Yak package
+     - run:
+        cd ${{ github.action_path }}
         cd ${{ inputs.build-directory }}
-        ..\yak.exe build --version "$Env:NBGV_SemVer2" --platform win
-        cd
+        ${{ github.action_path }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win
+        cd ${{ github.action_path }}
+      shell: pwsh
 #    - name: List Contence After
-#      run: dir ${{ inputs.build-directory }}
-    - name: Publish package
-      run: echo "Simulating push"
-#      run: Get-ChildItem ${{ inputs.build-directory }} -Filter *.yak | ForEach-Object -Process {.\yak.exe push  $_}
+#      run: dir ${{ github.action_path }}${{ inputs.build-directory }}
+#    - name: Publish package
+     - run: echo "Simulating push"
+#    - run: Get-ChildItem ${{ inputs.build-directory }} -Filter *.yak | ForEach-Object -Process {.\yak.exe push  $_}
+#      shell: pwsh
