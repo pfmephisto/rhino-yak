@@ -23,25 +23,20 @@ runs:
   #        setAllVars: true
 
   - name: Download the package
-     shell: pwsh
-     run: |
-        cd ${{ github.action_path }}
-        curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe
-        .\yak.exe version
+     - run: cd ${{ github.action_path }} && curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version
+       shell: pwsh
      
   - name: Build Yak package
-     shell: pwsh
-     run: |
-        cd ${{ github.action_path }}
-        cd ${{ inputs.build-directory }}
-        ${{ github.action_path }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win
-        cd ${{ github.action_path }}
+     - run: cd ${{ github.action_path }} && cd ${{ inputs.build-directory }} && ${{ github.action_path }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win && cd ${{ github.action_path }}
+       shell: pwsh
 
      
 #  - name: List Contence After
 #     run: dir ${{ github.action_path }}${{ inputs.build-directory }}
 
   - name: Publish package
-     shell: pwsh
-     run: echo "Simulating push"
-#     run: Get-ChildItem ${{ inputs.build-directory }} -Filter *.yak | ForEach-Object -Process {.\yak.exe push  $_}
+#     - run: Get-ChildItem ${{ inputs.build-directory }} -Filter *.yak | ForEach-Object -Process {.\yak.exe push  $_}
+     - run: echo "Simulating push"
+       shell: pwsh
+     
+
