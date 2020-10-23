@@ -40,4 +40,5 @@ runs:
 #    - name: List Contence After
 #      run: dir ${{ inputs.build-directory }}
     - name: Publish package
-      run: Get-ChildItem ${{ inputs.build-directory }} -Filter *.yak | ForEach-Object -Process {.\yak.exe push  $_}
+      run: echo "Simulating push"
+#      run: Get-ChildItem ${{ inputs.build-directory }} -Filter *.yak | ForEach-Object -Process {.\yak.exe push  $_}
