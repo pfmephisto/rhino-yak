@@ -16,27 +16,32 @@ inputs:
 runs:
   using: "composite"
   steps:
-  
+    - run: cd ${{ github.action_path }} && curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version
+    - run: cd ${{ github.action_path }} && cd ${{ inputs.build-directory }} && ${{ github.action_path }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win && cd ${{ github.action_path }}
+    - run: echo "Simulating push"
+
+
+
   #      # Then use the version string
   #    - uses: dotnet/nbgv@master
   #      with:
   #        setAllVars: true
 
-  - name: Download the package
-     run: cd ${{ github.action_path }} && curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version
+#  - name: Download the package
+#     run: cd ${{ github.action_path }} && curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version
 #     shell: pwsh
      
-  - name: Build Yak package
-     run: cd ${{ github.action_path }} && cd ${{ inputs.build-directory }} && ${{ github.action_path }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win && cd ${{ github.action_path }}
+#  - name: Build Yak package
+#     run: cd ${{ github.action_path }} && cd ${{ inputs.build-directory }} && ${{ github.action_path }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win && cd ${{ github.action_path }}
 #       shell: pwsh
 
      
 #  - name: List Contence After
 #     run: dir ${{ github.action_path }}${{ inputs.build-directory }}
 
-  - name: Publish package
+#  - name: Publish package
 #     - run: Get-ChildItem ${{ inputs.build-directory }} -Filter *.yak | ForEach-Object -Process {.\yak.exe push  $_}
-     run: echo "Simulating push"
+#     run: echo "Simulating push"
 #       shell: pwsh
      
 
