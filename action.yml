@@ -16,9 +16,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: cd ${{ github.action_path }} && curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version
+    - run: cd ${{ github.action_path }} && curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version7
+      shell: pwsh
     - run: cd ${{ github.action_path }} && cd ${{ inputs.build-directory }} && ${{ github.action_path }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win && cd ${{ github.action_path }}
+      shell: pwsh
     - run: echo "Simulating push"
+      shell: pwsh
 
 
 
