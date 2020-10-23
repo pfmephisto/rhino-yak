@@ -1,13 +1,43 @@
-name: 'Rhino Yak Package Manager'
-description: 'Deploy packages straight from GitHub to the Yak package manager'
+name: 'Yak Package Manager Action'
+description: 'Automate publishing using the Yak package manager'
 inputs:
-  build-path:  # id of input
-    description: 'The path to the build directory'
+  build-directory:  # path of the build directory
+    description: 'The path to the buil diectory'
     required: true
     default: './dist'
-outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  version:
+    description: 'The version of the package'
+    required: true
+#runs:
+#  using: 'node12'
+#  main: 'index.js'
+
+
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: "composite"
+  steps:
+#    - run: echo Hello ${{ inputs.build-directory }}.
+#      shell: bash
+#    - id: random-number-generator
+#      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+#      shell: bash
+#    - run: ${{ github.action_path }}/goodbye.sh
+#      shell: bash
+
+#      # Then use the version string
+#    - uses: dotnet/nbgv@master
+#      with:
+#        setAllVars: true
+    - name: Download Yak
+      run:
+        curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe
+        .\yak.exe version
+    - name: Build Yak package
+      run:
+        cd ${{ inputs.build-directory }}
+        ..\yak.exe build --version "$Env:NBGV_SemVer2" --platform win
+        cd
+#    - name: List Contence After
+#      run: dir ${{ inputs.build-directory }}
+    - name: Publish package
+      run: Get-ChildItem ${{ inputs.build-directory }} -Filter *.yak | ForEach-Object -Process {.\yak.exe push  $_}
