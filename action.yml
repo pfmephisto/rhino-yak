@@ -15,12 +15,16 @@ inputs:
 
 runs:
   using: "composite"
-  steps:
-    - run: cd ${{ github.repository }} && curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version
+  steps:    
+    - run: echo (pwd)
       shell: pwsh
-    - run: cd ${{ github.repository }} && cd ${{ inputs.build-directory }} && ls
+    - run: echo (pwd)
       shell: pwsh
-    - run: cd ${{ github.repository }} && cd ${{ inputs.build-directory }} && ${{ github.repository }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win && cd ${{ github.repository }}
+    - run: curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version
+      shell: pwsh
+    - run: ls ${{ inputs.build-directory }}
+      shell: pwsh
+    - run: cd ${{ inputs.build-directory }} && ${{ github.repository }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win
       shell: pwsh
     - run: echo "Simulating push"
       shell: pwsh
