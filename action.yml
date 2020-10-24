@@ -24,7 +24,7 @@ runs:
       shell: pwsh
     - run: ls ${{ inputs.build-directory }}
       shell: pwsh
-    - run: cd ${{ inputs.build-directory }} && ${{ github.repository }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win
+    - run: cd ${{ inputs.build-directory }} && .\..\yak.exe build --version "$Env:NBGV_SemVer2" --platform win
       shell: pwsh
     - run: echo "Simulating push"
       shell: pwsh
