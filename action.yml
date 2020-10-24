@@ -16,10 +16,6 @@ inputs:
 runs:
   using: "composite"
   steps:    
-    - run: echo (pwd)
-      shell: pwsh
-    - run: echo (pwd)
-      shell: pwsh
     - run: curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version
       shell: pwsh
     - run: ls ${{ inputs.build-directory }}
