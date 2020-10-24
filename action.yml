@@ -16,7 +16,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echeo (env.HOME)
+    - run: echeo (${{ env.HOME }})
       shell: pwsh
     - run: curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version
       shell: pwsh
