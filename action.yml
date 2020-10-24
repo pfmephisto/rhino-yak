@@ -16,9 +16,9 @@ inputs:
 runs:
   using: "composite"
   steps: 
-    - run: echo ${{ env.HOME }}
+    - run: ls ${{ env.HOME }}
       shell: pwsh
-    - run: echo ${{ env.GITHUB_WORKSPACE }}
+    - run: ls ${{ env.GITHUB_WORKSPACE }}
       shell: pwsh
     - run: curl -fSLo yak.exe https://files.mcneel.com/yak/tools/latest/yak.exe && .\yak.exe version
       shell: pwsh
