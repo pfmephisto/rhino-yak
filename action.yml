@@ -22,7 +22,7 @@ runs:
       shell: pwsh
     - run: cd ${{ inputs.build-directory }} && ${{ github.workspace }}\yak.exe build --version "$Env:NBGV_SemVer2" --platform win && cd ${{ github.workspace }}
       shell: pwsh
-    - run: echo "Simulating push"
+    - run: cd ${{ github.workspace }} && Get-ChildItem ${{ inputs.build-directory }} -Filter *.yak | ForEach-Object -Process {.\yak.exe push  $_}
       shell: pwsh
 
 
