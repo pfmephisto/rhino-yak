@@ -1,4 +1,4 @@
-# Yak packet maneger action
+# Yak package manager action
 
 Publish a Rhino/Grasshopper plug-in using Yak streight from a GitHub action.
 
