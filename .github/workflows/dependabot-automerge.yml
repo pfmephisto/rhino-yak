@@ -11,4 +11,4 @@ jobs:
       - uses: ahmadnassri/action-dependabot-auto-merge@v2
         with:
           target: minor  
-          github-token: ${{ secrets.rhino-yak-dependabot-automerge }}
+          github-token: ${{ secrets.DEPENDABOT_TOKEN }}
